@@ -11,17 +11,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mytunes.R;
-import com.mytunes.helper.HeaderItemDecoration;
 import com.mytunes.helper.Utility;
 import com.mytunes.impl.OnItemClick;
 import com.mytunes.model.SearchData;
 import com.squareup.picasso.Picasso;
+import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersAdapter;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public class MasterAdapter extends RecyclerView.Adapter<MasterAdapter.ViewHolder> implements HeaderItemDecoration.StickyHeaderInterface {
+public class MasterAdapter extends RecyclerView.Adapter<MasterAdapter.ViewHolder> implements StickyRecyclerHeadersAdapter<MasterAdapter.HeaderViewHolder> {
 
     private final List<SearchData> mValues;
     private final Context mContext;
@@ -50,6 +50,23 @@ public class MasterAdapter extends RecyclerView.Adapter<MasterAdapter.ViewHolder
         holder.content.setText(Utility.getInstance(mContext).getSimpleDate(item.releaseDate));
 
         holder.itemView.setOnClickListener(listener -> mClick.onItem(item));
+    }
+
+    @Override
+    public long getHeaderId(int position) {
+        return mValues.get(position).wrapperType.charAt(0);
+    }
+
+    @Override
+    public HeaderViewHolder onCreateHeaderViewHolder(ViewGroup parent) {
+        View headerView = LayoutInflater.from(parent.getContext()).inflate(R.layout.section_header, parent, false);
+        return new HeaderViewHolder(headerView);
+    }
+
+    @Override
+    public void onBindHeaderViewHolder(HeaderViewHolder viewHolder, int i) {
+        String headerText = mValues.get(i).wrapperType.toUpperCase();
+        viewHolder.mTxtHeader.setText(headerText);
     }
 
     @Override
@@ -82,29 +99,6 @@ public class MasterAdapter extends RecyclerView.Adapter<MasterAdapter.ViewHolder
         notifyDataSetChanged();
     }
 
-    @Override
-    public int getHeaderPositionForItem(int itemPosition) {
-        return itemPosition * 2;
-    }
-
-    @Override
-    public int getHeaderLayout(int headerPosition) {
-        return R.layout.section_header;
-    }
-
-    @Override
-    public void bindHeaderData(View header, int headerPosition) {
-        ((TextView)header).setText(mValues.get(headerPosition).wrapperType.toUpperCase());
-    }
-
-    @Override
-    public boolean isHeader(int itemPosition) {
-        if (itemPosition == 0)
-            return false;
-        else
-            return !mValues.get(itemPosition * 2).wrapperType.equals(mValues.get(itemPosition * 2 - 1).wrapperType);
-    }
-
     public class ViewHolder extends RecyclerView.ViewHolder{
 
         private final TextView title;
@@ -117,6 +111,17 @@ public class MasterAdapter extends RecyclerView.Adapter<MasterAdapter.ViewHolder
             title = itemView.findViewById(R.id.txtTitle);
             content = itemView.findViewById(R.id.txtContent);
             gridIcon = itemView.findViewById(R.id.imgIcon);
+        }
+    }
+
+    public class HeaderViewHolder extends RecyclerView.ViewHolder{
+
+        private TextView mTxtHeader;
+
+        public HeaderViewHolder(@NonNull @NotNull View itemView) {
+            super(itemView);
+
+            mTxtHeader = itemView.findViewById(R.id.list_item_section_text);
         }
     }
 

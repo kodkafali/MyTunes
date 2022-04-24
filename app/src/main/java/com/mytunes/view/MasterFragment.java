@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Handler;
@@ -34,6 +35,7 @@ import com.mytunes.model.ResultData;
 import com.mytunes.model.SearchData;
 import com.mytunes.view.adapter.MasterAdapter;
 import com.mytunes.viewModel.MasterViewModel;
+import com.timehop.stickyheadersrecyclerview.StickyRecyclerHeadersDecoration;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -161,13 +163,13 @@ public class MasterFragment extends Fragment implements OnItemClick {
 
         rvSearch.setHasFixedSize(false);
 
-        rvSearch.setLayoutManager(new GridLayoutManager(mDashboardActivity, 2));
+        rvSearch.setLayoutManager(new LinearLayoutManager(mDashboardActivity));
 
         mAdapter = new MasterAdapter(mDashboardActivity, this, new ArrayList<>());
 
-        rvSearch.addItemDecoration(new HeaderItemDecoration(rvSearch, (HeaderItemDecoration.StickyHeaderInterface) mAdapter));
-
         rvSearch.setAdapter(mAdapter);
+
+        rvSearch.addItemDecoration(new StickyRecyclerHeadersDecoration(mAdapter));
 
         setPagination(rootView);
     }
