@@ -37,9 +37,8 @@
             <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:orientation="horizontal">
-
-                <include layout="@layout/recipe_item" />
 
                 <include layout="@layout/recipe_item" />
 
@@ -52,27 +51,12 @@
 
                 <include layout="@layout/recipe_item" />
 
-                <include layout="@layout/recipe_item" />
-
             </GridLayout>
 
             <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-
-                <include layout="@layout/recipe_item" />
-
-                <include layout="@layout/recipe_item" />
-
-            </GridLayout>
-
-            <GridLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <include layout="@layout/recipe_item" />
 
                 <include layout="@layout/recipe_item" />
 
@@ -85,27 +69,12 @@
 
                 <include layout="@layout/recipe_item" />
 
-                <include layout="@layout/recipe_item" />
-
             </GridLayout>
 
             <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-
-                <include layout="@layout/recipe_item" />
-
-                <include layout="@layout/recipe_item" />
-
-            </GridLayout>
-
-            <GridLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <include layout="@layout/recipe_item" />
 
                 <include layout="@layout/recipe_item" />
 
@@ -118,6 +87,13 @@
 
                 <include layout="@layout/recipe_item" />
 
+            </GridLayout>
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
                 <include layout="@layout/recipe_item" />
 
             </GridLayout>
@@ -129,6 +105,13 @@
 
                 <include layout="@layout/recipe_item" />
 
+            </GridLayout>
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
                 <include layout="@layout/recipe_item" />
 
             </GridLayout>
@@ -140,16 +123,12 @@
 
                 <include layout="@layout/recipe_item" />
 
-                <include layout="@layout/recipe_item" />
-
             </GridLayout>
 
             <GridLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-
-                <include layout="@layout/recipe_item" />
 
                 <include layout="@layout/recipe_item" />
 
